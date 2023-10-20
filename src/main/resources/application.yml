@@ -1,0 +1,73 @@
+spring:
+  profiles:
+    active: production
+---
+
+spring:
+  messages:
+    basename: lang/res
+    fallback-to-system-locale: true
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${GOOGLE_CLIENT_ID}
+            clientSecret: ${GOOGLE_CLIENT_SECRET}
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 428949898945138
+            clientSecret: 6093ed1ab3a74524a7dd4416667a5679
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - public_profile
+          github:
+            clientId: ${GITHUB_CLIENT_ID}
+            clientSecret: ${GITHUB_CLIENT_SECRET}
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - read:user
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,name,email,picture.width(250).height(250)
+  mail:
+    host: ${MAIL_SERVER_HOST}
+    port: 587
+    username: ${MAIL_SERVER_USERNAME}
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: ${MAIL_SERVER_HOST}
+    password: ${MAIL_SERVER_PASSWORD}
+app:
+  appName: FullStack template
+  max-request-size: 200000000 # 200 MB
+  auth:
+    tokenSecret: ${AUTH_TOKEN_SECRET}
+server:
+  tomcat:
+    connection-timeout: 5s
+
+
+
