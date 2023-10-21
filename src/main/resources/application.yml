@@ -11,16 +11,16 @@ spring:
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}
     password: ${DATASOURCE_PASSWORD}
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
   security:
     oauth2:
       client:
@@ -61,7 +61,7 @@ spring:
       ssl.trust: ${MAIL_SERVER_HOST}
     password: ${MAIL_SERVER_PASSWORD}
 app:
-  appName: FullStack template
+  appName: Backend setUp
   max-request-size: 200000000 # 200 MB
   auth:
     tokenSecret: ${AUTH_TOKEN_SECRET}
