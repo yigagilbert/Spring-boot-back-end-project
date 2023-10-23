@@ -1,15 +1,14 @@
 package com.example.fullstacktemplate.service;
 
 
+import com.example.fullstacktemplate.config.security.UserPrincipal;
 import com.example.fullstacktemplate.model.User;
 import com.example.fullstacktemplate.repository.UserRepository;
-import com.example.fullstacktemplate.config.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.LocaleResolver;
 
 import java.util.Optional;
 
